@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="MyAjax.js"></script>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        .box1{
+            width: 300px;
+            height: 300px;
+            margin: 100px auto;
+            border:1px solid #000;
+            background-color: darkgray;
+            text-align: center;
+        }
+        #title, #des{
+            background-color: hotpink;
+            font-size: 16px;
+            text-align: center;
+        }
+        img{
+            width: 200px;
+            height: 200px;
+            border:1px solid #fff;
+            display: block;
+            margin:10px auto;
+        }
+    </style>
+</head>
+<body>
+<div class="box1">
+    <p id="title">商品标题</p>
+    <img id="images" src="" alt="">
+    <p id="des">商品描述</p>
+    <button name="nz">女装</button>
+    <button name="tx">拖鞋</button>
+    <button name="bb">包包</button>
+</div>
+<!--<script src="jquery.js"></script>-->
+<script>
+    window.onload=function(){
+        //1、获取需要设置的元素
+        let oTitle = document.querySelector("#title");
+        let oDes = document.querySelector("#des");
+        let oImages = document.querySelector("img");
+        //2、获取所有按钮
+        let oBtn=document.querySelectorAll("button");
+        //3、给按钮添加点击事件
+        oBtn[0].onclick=function () {
+            let self = this;
+            //4、发送ajax请求到服务器
+            let xhr = new XMLHttpRequest();
+            ajax({
+                    type:"get",
+                    url:"ajax.php",
+                    data:{"name":this.getAttribute("name")},
+                    timeout:3000,
+                    success:function (xhr) {
+                        let name = self.getAttribute("name");
+                        let xmlObject = xhr.responseXML;
+                        if(xmlObject == null){
+                            var parser = new DOMParser();
+                         //将responseText转换成XML对象
+                         xmlObject = parser.parseFromString(xhr.responseText,"text/xml");
+                        //  let title = xmlObject.querySelector(name+">title").innerHTML;
+                        //  let des = xmlObject.querySelector(name+">des").innerHTML;
+                        //  let image = xmlObject.querySelector(name+">image").innerHTML;
+                        //     oTitle.innerHTML = title;
+                        //     oDes.innerHTML=des;
+                        //     oImages.setAttribute("src",image);
+                                // console.log(xmlObject);
+                                var info = xmlObject.querySelector("nz");
+                                console.log(info);
+                                
+                                }  
+
+                    },
+                    error:function () {
+                        alert("wrong");
+                    }
+
+                }
+
+            )
+        }
+    }
+</script>
+</body>
+</html>

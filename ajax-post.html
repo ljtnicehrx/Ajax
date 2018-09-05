@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="MyAjax.js"></script>
+</head>
+<script src="MyAjax.js"></script>
+<body>
+<button>发送请求</button>
+<script>
+    window.onload=function (ev) {
+        var oBtn = document.querySelector("button");
+        oBtn.onclick=function (ev1) {
+            var xmlHttp;
+            if(window.XMLHttpRequest){
+                xmlHttp = new XMLHttpRequest();
+            }
+            else{
+                xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            //2、设置发送类型和发送地址
+            xmlHttp.open("POST","ajax-post.php",true)
+            xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            //3、发送请求
+            xmlHttp.send("userName=hrx&userPwd=123");
+            //4、监听状态变化
+            xmlHttp.onreadystatechange=function(ev2){
+                if(xmlHttp.readyState===4){
+                    if(xmlHttp.status>=200&&xmlHttp.status<=300||xmlHttp===304){
+                        //5、返回处理结果
+                       alert(xmlHttp.responseText);
+                    }
+                    else
+                    {
+                    alert("请求失败");
+                    }
+                }
+            }
+        }
+    }
+</script>
+<!--<button>发送请求</button>-->
+</body>
+</html>

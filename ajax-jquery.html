@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="ajax-post/jquery.js"></script>
+</head>
+<body>
+<script>
+    window.onload=function (ev) {
+        var oBtn = document.querySelector("button");
+        oBtn.onclick=function (ev1) {
+            $.ajax({
+                "type":"GET",
+                "url":"ajax-jquery.php",
+                "data":"userName=hrx&userPwd=123",
+                success:function (msg) {
+                    alert(msg);
+                },
+                error:function (xhr) {
+                    alert(xhr.status);
+                }
+            })
+        }
+    }
+</script>
+<button>发送请求</button>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<products>
+	<nz>
+		<title>时尚女装</title>
+		<des>百变女孩，时尚女装你值得拥有</des>
+		<image>images/1.jpg</image>
+	</nz>
+	<bb>
+		<title>大牌包包</title>
+		<des>哪一款你心头爱 ？别犹豫</des>
+		<image>images/2.jpg</image>
+	</bb>
+	<tx>
+		<title>家居拖鞋</title>
+		<des>拖鞋 生命之中必不可少的一员</des>
+		<image>images/3.jpg</image>
+	</tx>
+</products>
